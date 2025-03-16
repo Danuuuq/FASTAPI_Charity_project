@@ -1,6 +1,6 @@
 from aiogoogle import Aiogoogle
 from aiogoogle.excs import AiogoogleError
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db import get_async_session
@@ -22,6 +22,6 @@ async def get_report(
         await generate_spreadsheet_report(projects, wrapper_service)
     except AiogoogleError:
         raise HTTPException(
-            status_code=500,
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail='Ошибка при создании таблицы, сообщите администратору')
     return projects

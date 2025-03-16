@@ -1,7 +1,10 @@
+from fastapi import status
+
+
 class Responses:
     class Errors:
         INVALID_OPERATION = {
-            400: {
+            status.HTTP_400_BAD_REQUEST: {
                 'description': 'Invalid operations',
                 'content': {
                     'application/json': {
@@ -49,7 +52,7 @@ class Responses:
             }
         }
         PROJECT_CLOSED_OR_WITH_DONATIONS = {
-            400: {
+            status.HTTP_400_BAD_REQUEST: {
                 'description': (
                     'Нельзя удалять закрытый проект или проект'
                     ', в который уже были инвестированы средства.'
@@ -89,7 +92,7 @@ class Responses:
             }
         }
         NOT_UNIQUE_NAME = {
-            400: {
+            status.HTTP_400_BAD_REQUEST: {
                 'description': 'Not unique name',
                 'content': {
                     'application/json': {
@@ -101,7 +104,7 @@ class Responses:
         }
 
         UNAUTHORIZED = {
-            401: {
+            status.HTTP_401_UNAUTHORIZED: {
                 'description': 'Missing token or inactive user',
                 'content': {
                     'application/json': {
@@ -112,7 +115,7 @@ class Responses:
         }
 
         FORBIDDEN = {
-            403: {
+            status.HTTP_403_FORBIDDEN: {
                 'description': 'Not a superuser',
                 'content': {
                     'application/json': {
